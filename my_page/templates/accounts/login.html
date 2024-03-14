@@ -1,0 +1,31 @@
+{%extends "userbase.html" %}
+
+
+
+{%block content %}
+
+{%if form.errors%}
+    <p>invalid credential please enter the correct username or password</p>
+ {%endif%}
+ {%if next %}
+    {%if users.is_authenticated%}
+        <p>no acess to this page. Bye!</p>
+    {%else%}
+        <p>login to access this page</p>
+    {%endif%}
+
+{%endif%}
+<form action="" method="post">
+    {%csrf_token %}
+
+    <div>
+        {{form.as_p}}
+    </div>
+
+    <input type="submit" value="Login">
+    <input type="hidden" name="next" value="{{next}}">
+</form>
+<a href="#">Reset password</a>
+
+
+{%endblock content %}
